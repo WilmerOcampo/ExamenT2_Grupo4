@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script th:src="@{/js/web/backoffice/especialidad/formespecialidad.js}" type="text/javascript"></script>
+<nav th:replace="layout::menu"></nav>
+<br>
+<div class="card w-80">
+    <div class="card-header">
+        Mantenimiento de Especialidades (LLAVE FORANEA)
+    </div>
+    <div class="card-body">
+        <button id="btnagregar" type="button" class="btn btn-primary">Agregar</button>
+        <hr/>
+        <div id="divmensaje"></div>
+        <table id="tblproducto" class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id Especialidad</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Funcion</th>
+                <th scope="col">Fecha Graduacion</th>
+                <th scope="col">Nombre Medico</th>
+                <th scope="col">Apellido Medico</th>
+                <th scope="col">Actualizar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="especialidad : ${especialidades}">
+                <td th:text="${especialidad.idespecialidad}"></td>
+                <td th:text="${especialidad.titulo}"></td>
+                <td th:text="${especialidad.funcion}"></td>
+                <td th:text="${especialidad.fecha_graduacion}"></td>
+                <td th:text="${especialidad.medico.nommedico}"></td>
+                <td th:text="${especialidad.medico.apemedico}"></td>
+                <td>
+                    <button type="button" class="btn btn-primary btnactualizar">Actualizar</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEspecialidad" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Insertar Especialidad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="insertForm">
+                    <div class="form-group">
+                        <label for="titulo">Título:</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo">
+                    </div>
+                    <div class="form-group">
+                        <label for="funcion">Función:</label>
+                        <input type="text" class="form-control" id="funcion" name="funcion">
+                    </div>
+                    <div class="form-group">
+                        <label for="cbomedico">Medico:</label>
+                        <select class="form-select" id="cbomedico"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechGraduacion">Fecha de Graduación:</label>
+                        <input type="date" class="form-control" id="fechGraduacion" name="fechGraduacion">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="insertBtn">Insertar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).on("click","#btnagregar", function(){
+
+
+        listarCboMedico(0);
+        $("#modalEspecialidad").modal("show")
+    })
+
+    function listarCboMedico(idmedico){
+        $.ajax({
+            type: "GET",
+            url: "/medico/list",
+            dataType: "JSON",
+            success: function(resultado){
+                $.each(resultado, function (index, value){
+                    $("#cbomedico").append(
+                        `<option value ="${value.idmedico}">${value.nommedico}</option>`
+                    )
+                });
+                if(idmedico > 0){
+                    $("#cbomedico").val(idmedico)
+                }
+            }
+        })
+    }
+
+</script>
+</body>
+</html>
