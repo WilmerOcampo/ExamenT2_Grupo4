@@ -5,7 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-<script th:src="@{/js/web/backoffice/especialidad/formespecialidad.js}" type="text/javascript"></script>
 <nav th:replace="layout::menu"></nav>
 <br>
 <div class="card w-80">
@@ -13,10 +12,10 @@
         Mantenimiento de Especialidades (LLAVE FORANEA)
     </div>
     <div class="card-body">
-        <button id="btnagregar" type="button" class="btn btn-primary">Agregar</button>
+        <button id="btnAgregar" type="button" class="btn btn-primary">Agregar</button>
         <hr/>
-        <div id="divmensaje"></div>
-        <table id="tblproducto" class="table">
+        <div id="divMsg"></div>
+        <table id="tableEspecialidad" class="table table-bordered">
             <thead>
             <tr>
                 <th scope="col">Id Especialidad</th>
@@ -33,11 +32,17 @@
                 <td th:text="${especialidad.idespecialidad}"></td>
                 <td th:text="${especialidad.titulo}"></td>
                 <td th:text="${especialidad.funcion}"></td>
-                <td th:text="${especialidad.fecha_graduacion}"></td>
+                <td th:text="${especialidad.getFechagraduacion}"></td>
                 <td th:text="${especialidad.medico.nommedico}"></td>
                 <td th:text="${especialidad.medico.apemedico}"></td>
                 <td>
-                    <button type="button" class="btn btn-primary btnactualizar">Actualizar</button>
+                    <button type="button" class="btn btn-primary btn-actualizar"
+                            th:data-eid="${especialidad.idespecialidad}"
+                            th:data-etit="${especialidad.titulo}"
+                            th:data-efun="${especialidad.funcion}"
+                            th:data-efgra="${especialidad.fechagraduacion}"
+                            th:data-emed="${especialidad.medico.idmedico}">Actualizar
+                    </button>
                 </td>
             </tr>
             </tbody>
@@ -50,9 +55,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Insertar Especialidad</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="insertForm">
@@ -69,44 +72,20 @@
                         <select class="form-select" id="cbomedico"></select>
                     </div>
                     <div class="form-group">
-                        <label for="fechGraduacion">Fecha de Graduación:</label>
-                        <input type="date" class="form-control" id="fechGraduacion" name="fechGraduacion">
+                        <label for="fechagraduacion">Fecha de Graduación:</label>
+                        <input type="date" class="form-control" id="fechagraduacion" name="fechagraduacion">
                     </div>
+
+                    <input type="hidden" id="hIdEspecialidad" value="0">
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="insertBtn">Insertar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnInsert">Insertar</button>
             </div>
         </div>
     </div>
 </div>
-<script>
-    $(document).on("click","#btnagregar", function(){
-
-
-        listarCboMedico(0);
-        $("#modalEspecialidad").modal("show")
-    })
-
-    function listarCboMedico(idmedico){
-        $.ajax({
-            type: "GET",
-            url: "/medico/list",
-            dataType: "JSON",
-            success: function(resultado){
-                $.each(resultado, function (index, value){
-                    $("#cbomedico").append(
-                        `<option value ="${value.idmedico}">${value.nommedico}</option>`
-                    )
-                });
-                if(idmedico > 0){
-                    $("#cbomedico").val(idmedico)
-                }
-            }
-        })
-    }
-
-</script>
+<script th:src="@{/web/backoffice/especialidad/especialidad.js}" type="text/javascript"></script>
 </body>
 </html>

@@ -14,7 +14,12 @@ public class EspecialidadService implements  IEspecialidadService{
     private EspecialidadRepository especialidadRepository;
 
     @Override
-    public List<Especialidad> listaEspecialidades() {
+    public List<Especialidad> findAll() {
         return especialidadRepository.findAll();
+    }
+
+    @Override
+    public void save(Especialidad especialidad) {
+        especialidadRepository.save(especialidad);
     }
 }

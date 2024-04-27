@@ -17,8 +17,8 @@ public class Especialidad {
     @Column(name = "funcion")
     private String  funcion ;
     @Temporal(TemporalType.DATE)
-    @Column(name = "fecha_graduacion")
-    private Date fecha_graduacion;
+    @Column(name = "fechgraduacion")
+    private Date fechagraduacion;
     @ManyToOne
     @JoinColumn(name = "idmedico")
     private Medico medico;
