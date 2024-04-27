@@ -13,35 +13,39 @@
                     <h2 class="mb-0">REGISTRO DE USUARIO</h2>
                 </div>
                 <div class="card-body">
-                    <form id="formRegister" class="mb-3" th:action="@{/seguridad/registro}" method="POST">
+                    <form id="formRegister" class="mb-3" th:action="@{/seguridad/registro}" method="POST" th:object="${usuario}">
                         <div class="mb-3">
-                          <label for="nombre" class="form-label">Nombres</label>
-                          <input type="text" class="form-control" id="nombre" name="nombres" placeholder="Introduzca sus nombres" autofocus/>
-                          <div class="invalid-feedback d-block"></div>
+                          <label for="nombres" class="form-label">Nombres</label>
+                          <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Introduzca sus nombres" autofocus/>
+                            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('nombres')}"
+                                 th:errors="*{nombres}"></div>
                         </div>
                         <div class="mb-3">
-                          <label for="apellido" class="form-label">Apellidos</label>
-                          <input type="text" class="form-control" id="apellido" name="apellidos" placeholder="Introduzca sus apellidos" autofocus/>
-                          <div class="invalid-feedback d-block" ></div>
+                          <label for="apellidos" class="form-label">Apellidos</label>
+                          <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Introduzca sus apellidos" autofocus/>
+                            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('apellidos')}"
+                                 th:errors="*{apellidos}"></div>
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Introduzca su email" autofocus/>
-                            <div class="invalid-feedback d-block" ></div>
+                            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('email')}"
+                                 th:errors="*{email}"></div>
                         </div>
                         <div class="mb-3">
-                          <label for="usuario" class="form-label">Usuario</label>
-                          <input type="text" class="form-control" id="usuario" name="nomusuario" placeholder="Introduzca su usuario" autofocus/>
-                          <div class="invalid-feedback d-block" ></div>
+                          <label for="nomusuario" class="form-label">Usuario</label>
+                          <input type="text" class="form-control" id="nomusuario" name="nomusuario" placeholder="Introduzca su usuario" autofocus/>
+                            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('nomusuario')}"
+                                 th:errors="*{nomusuario}"></div>
                         </div>
 
                       <div class="mb-3 form-password-toggle">
                         <label class="form-label" for="password">Password</label>
                         <div class="input-group input-group-merge">
                           <input type="password" id="password" class="form-control" name="password" placeholder="Introduzca su contraseña"/>
-                          <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                          <div class="invalid-feedback d-block"></div>
+                            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('password')}"
+                                 th:errors="*{password}"></div>
                         </div>
                       </div>
                         <div class="text-center m-2">
