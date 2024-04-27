@@ -6,5 +6,9 @@ import java.util.List;
 
 public interface IEspecialidadService {
     List<Especialidad> findAll();
+
     void save(Especialidad especialidad);
+
+    void eliminarPorId(Integer id);
+
 }
