@@ -6,9 +6,9 @@ import java.util.Date;
 @Data
 public class EspecialidadRequest {
 
-    private Integer IdEspecialidad;
-    private String  Titulo;
-    private String  Funcion ;
-    private Date    FechGraduacion;
-    private Integer IdMedico;
+    private Integer idespecialidad;
+    private String titulo;
+    private String funcion;
+    private Date fechagraduacion;
+    private Integer idmedico;
 }

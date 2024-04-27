@@ -5,5 +5,6 @@ import com.WAEC2GRUPO4.ExamenT2.model.bd.Especialidad;
 import java.util.List;
 
 public interface IEspecialidadService {
-    List<Especialidad> listaEspecialidades();
+    List<Especialidad> findAll();
+    void save(Especialidad especialidad);
 }
