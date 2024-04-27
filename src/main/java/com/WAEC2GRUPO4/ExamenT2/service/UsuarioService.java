@@ -1,6 +1,6 @@
 package com.WAEC2GRUPO4.ExamenT2.service;
-import com.WAEC2GRUPO4.ExamenT2.model.bd.pk.Rol;
-import com.WAEC2GRUPO4.ExamenT2.model.bd.pk.Usuario;
+import com.WAEC2GRUPO4.ExamenT2.model.bd.Rol;
+import com.WAEC2GRUPO4.ExamenT2.model.bd.Usuario;
 import com.WAEC2GRUPO4.ExamenT2.repository.RolRepository;
 import com.WAEC2GRUPO4.ExamenT2.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
@@ -27,36 +27,15 @@ public class UsuarioService  implements IUsuarioService {
     public Usuario findUserByNomUsuario(String nomusuario) {
         return usuarioRepository.findByNomusuario(nomusuario);
     }
-
     @Override
     public Usuario guardarUsuario(Usuario usuario) {
         usuario.setPassword(bCryptPasswordEncoder.encode(
-                "123456"));
+                usuario.getPassword()));
         usuario.setActivo(true);
-
-        Rol usuarioRol = rolRepository.findByNomrol("ADMIN");
+        Rol usuarioRol = rolRepository.findByNomrol("USER");
         usuario.setRoles(new HashSet<>(Arrays.asList(usuarioRol)));
         return usuarioRepository.save(usuario);
     }
-
-    @Override
-    public List<Usuario> listarUsuarios() {
-        return usuarioRepository.findAll();
-    }
-
-    @Override
-    public Usuario obtenerUsuarioxId(int id) {
-        Usuario usuario = usuarioRepository.findById(id).orElse(null);
-        usuario.setPassword("");
-        return usuario;
-    }
-
-    @Override
-    public void actualizarUsuario(Usuario usuario) {
-        usuarioRepository.actualizarUsuario(
-                usuario.getNombres(), usuario.getApellidos(),
-                usuario.getActivo(), usuario.getIdusuario());
-}
 
     @Override
     public void cambiarContraseña(String nombreusuario, String password) {

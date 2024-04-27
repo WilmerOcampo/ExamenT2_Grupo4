@@ -1,6 +1,6 @@
 package com.WAEC2GRUPO4.ExamenT2.service;
-import com.WAEC2GRUPO4.ExamenT2.model.bd.pk.Rol;
-import com.WAEC2GRUPO4.ExamenT2.model.bd.pk.Usuario;
+import com.WAEC2GRUPO4.ExamenT2.model.bd.Rol;
+import com.WAEC2GRUPO4.ExamenT2.model.bd.Usuario;
 import com.WAEC2GRUPO4.ExamenT2.model.dto.security.UsuarioSecurity;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
