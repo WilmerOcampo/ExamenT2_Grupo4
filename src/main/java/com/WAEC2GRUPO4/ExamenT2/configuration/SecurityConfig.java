@@ -1,4 +1,5 @@
 package com.WAEC2GRUPO4.ExamenT2.configuration;
+import com.WAEC2GRUPO4.ExamenT2.service.CustomSuccessHandler;
 import com.WAEC2GRUPO4.ExamenT2.service.DetalleUsuarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -10,12 +11,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig {
     private DetalleUsuarioService detalleUsuarioService;
+    private CustomSuccessHandler customSuccessHandler;
     @Bean
     public SecurityFilterChain configSecurity(HttpSecurity httpSecurity)
             throws Exception{
@@ -28,16 +31,19 @@ public class SecurityConfig {
                                                 "/static/**",
                                                 "/css/**",
                                                 "/js/**",
-                                                "/seguridad/registro")
+                                                "/seguridad/registro",
+                                                "/templates/**")
                                         .permitAll()
                                         .anyRequest()
                                         .authenticated()
                 ).formLogin(
                         login->
                                 login.loginPage("/auth/login")
-                                        .defaultSuccessUrl("/auth/login-success")
-                                        .usernameParameter("nomusuario")
+                                        .loginProcessingUrl("/login")
+                                        .usernameParameter("username")
                                         .passwordParameter("password")
+                                        .successHandler(customSuccessHandler)
+                                        .permitAll()
                 ).logout(
                         logout->
                                 logout.logoutSuccessUrl("/auth/login")

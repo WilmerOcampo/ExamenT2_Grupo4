@@ -6,12 +6,10 @@
     <link rel="stylesheet" th:href="@{/css/boostrap/bootstrap.css}" class="template-customizer-core-css"/>
 </head>
 <body>
+<nav th:replace="~{layout::menu}"></nav>
 <div class="container text-center">
     <div class="row">
-        <div class="col">
-            <h1 th:text="${session.username}"></h1>
-
-        </div>
+        <div class="col"></div>
         <div class="col">
             <form th:action="@{/seguridad/cambiar}" method="post">
                 <input type="hidden" id="nomusuario" name="nomusuario" th:value="${session.username}"/>

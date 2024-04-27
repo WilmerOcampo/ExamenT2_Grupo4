@@ -18,6 +18,7 @@ public class SeguridadController {
         return "backoffice/seguridad/register";
     }
 
+
     @GetMapping("/cambiar-password")
     public String cambiarContraseña(){
         return "backoffice/seguridad/frmcambiarcontraseña";
@@ -27,7 +28,7 @@ public class SeguridadController {
     public String cambiarContraseñaPost(@RequestParam("nomusuario") String nombreusuario, @RequestParam("password") String contraseña, Model model){
         iUsuarioService.cambiarContraseña(nombreusuario,contraseña);
         model.addAttribute("mensaje","Se cambio satisfactoriamente la contraseña");
-        return "redirect:/seguridad/cambiar-password";
+        return "backoffice/seguridad/frmcambiarcontraseña";
     }
 }
 
