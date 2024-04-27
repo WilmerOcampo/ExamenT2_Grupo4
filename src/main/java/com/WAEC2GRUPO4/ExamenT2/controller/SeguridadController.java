@@ -1,5 +1,5 @@
 package com.WAEC2GRUPO4.ExamenT2.controller;
-import com.WAEC2GRUPO4.ExamenT2.model.bd.pk.Usuario;
+import com.WAEC2GRUPO4.ExamenT2.model.bd.Usuario;
 import com.WAEC2GRUPO4.ExamenT2.service.IUsuarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,8 +17,11 @@ public class SeguridadController {
     public String registrousuario(){
         return "backoffice/seguridad/register";
     }
-
-
+    @PostMapping("/registro")
+    public String guardarUsuario(@ModelAttribute Usuario usuario){
+        iUsuarioService.guardarUsuario(usuario);
+        return "backoffice/auth/login";
+    }
     @GetMapping("/cambiar-password")
     public String cambiarContraseña(){
         return "backoffice/seguridad/frmcambiarcontraseña";

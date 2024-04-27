@@ -1,5 +1,5 @@
 package com.WAEC2GRUPO4.ExamenT2.repository;
-import com.WAEC2GRUPO4.ExamenT2.model.bd.pk.Usuario;
+import com.WAEC2GRUPO4.ExamenT2.model.bd.Usuario;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
