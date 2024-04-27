@@ -1,33 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout::head">
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
 <nav th:replace="~{layout::menu}"></nav>
-<div class="container text-center">
+<div class="container py-5">
     <div class="row">
-        <div class="col"></div>
-        <div class="col">
-            <form th:action="@{/seguridad/cambiar}" method="post">
-                <input type="hidden" id="nomusuario" name="nomusuario" th:value="${session.username}"/>
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" placeholder="Ingrese su contraseña">
-                    <label>Contraseña</label>
+        <div class="col-lg-5 mx-auto">
+            <div class="card shadow">
+                <div class="card-header text-center">
+                    <h2 class="mb-0">CAMBIA TU PASSWORD</h2>
                 </div>
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="password" name="password"  placeholder="Ingrese su nueva contraseña">
-                    <label for="password">Nueva Contraseña</label>
+                <div class="card-body">
+                    <form th:action="@{/seguridad/cambiar}" method="post">
+                        <input type="hidden" id="nomusuario" name="nomusuario" th:value="${session.username}"/>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" placeholder="Ingrese su contraseña">
+                            <label>Contraseña</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="Ingrese su nueva contraseña">
+                            <label for="password">Nueva Contraseña</label>
+                        </div>
+                        <div class="text-center m-2">
+                            <button type="submit" class="btn btn-primary">GUARDAR</button>
+                        </div>
+                    </form>
+                    <div class="message alert alert-info text-center" th:if="${mensaje}">
+                        Se cambio satisfactoriamente la contraseña!
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Cambiar</button>
-                <hr/>
-            </form>
-            <div class="message alert alert-info" th:if="${mensaje}">
-                Se cambio satisfactoriamente la contraseña!
             </div>
         </div>
-        <div class="col"></div>
     </div>
 </div>
 

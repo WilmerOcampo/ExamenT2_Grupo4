@@ -26,13 +26,13 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth ->
-                                auth.requestMatchers("/auth/login",
-                                                "/resources/**",
-                                                "/static/****",
-                                                "/css/****",
-                                                "/js/****",
-                                                "/seguridad/registro",
-                                                "/templates/**")
+                                auth.requestMatchers(/*"/auth/login",*/
+/*                                                "/resources/**",
+                                                "/static/****",*/
+                                                "/css/**",
+                                                "/js/**",
+                                                "/seguridad/registro"/*,
+                                                "/templates/**"*/)
                                         .permitAll()
                                         .anyRequest()
                                         .authenticated()
