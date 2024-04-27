@@ -37,9 +37,14 @@ public class SeguridadController {
     }
 
     @PostMapping("/cambiar")
-    public String cambiarContraseñaPost(@RequestParam("nomusuario") String nombreusuario, @RequestParam("password") String contraseña, Model model) {
-        iUsuarioService.cambiarContraseña(nombreusuario, contraseña);
-        model.addAttribute("mensaje", "Se cambio satisfactoriamente la contraseña");
-        return "backoffice/seguridad/frmcambiarcontraseña";
+    public String cambiarContraseñaPost(@RequestParam("nomusuario") String nombreusuario, @RequestParam("password1") String contrasenia1,@RequestParam("password2") String contrasenia2, Model model) {
+        if (!contrasenia1.equals(contrasenia2)) {
+            model.addAttribute("error", "Las contraseñas no coinciden");
+            return "backoffice/seguridad/frmcambiarcontraseña";
+        }else{
+            iUsuarioService.cambiarContraseña(nombreusuario, contrasenia1);
+            model.addAttribute("mensaje", "Se cambio satisfactoriamente la contraseña");
+            return "backoffice/seguridad/frmcambiarcontraseña";
+        }
     }
 }
