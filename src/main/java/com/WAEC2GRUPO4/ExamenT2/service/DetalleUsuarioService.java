@@ -44,6 +44,7 @@ public class DetalleUsuarioService implements UserDetailsService {
         );
         usuarioSecurity.setEmail(usuario.getEmail());
         usuarioSecurity.setNombre(usuario.getNombres());
+        usuarioSecurity.setUsername(usuario.getNomusuario());
         return usuarioSecurity;
     }
 }

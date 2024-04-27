@@ -12,5 +12,6 @@ public interface IUsuarioService {
     Usuario obtenerUsuarioxId(int id);
     void actualizarUsuario(Usuario usuario);
 
+    void cambiarContraseña(String nombreusuario,String password);
 
 }

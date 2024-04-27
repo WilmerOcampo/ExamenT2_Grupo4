@@ -27,10 +27,9 @@ public class LoginController {
     @GetMapping("/dashboard")
     public String dashboard(HttpServletRequest request){
         HttpSession session = request.getSession();
-        UserDetails userDetails = (UserDetails) SecurityContextHolder
-                .getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UsuarioSecurity usuarioSecurity = (UsuarioSecurity) userDetails;
-        session.setAttribute("nomusuario", usuarioSecurity.getNombre());
+        session.setAttribute("username", usuarioSecurity.getUsername());
         return "backoffice/auth/inicio";
     }
 }

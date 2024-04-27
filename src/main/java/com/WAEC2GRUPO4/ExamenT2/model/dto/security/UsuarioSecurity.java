@@ -11,6 +11,7 @@ import java.util.Collection;
 public class UsuarioSecurity extends User {
     private String email;
     private String nombre;
+    private String username;
     public UsuarioSecurity(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
     }
