@@ -55,17 +55,4 @@ public class EspecialidadController {
         return EspecialidadResponse.builder().mensaje(message).respuesta(response).build();
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    @ResponseBody
-    public EspecialidadResponse eliminarEspecialidad(@PathVariable Integer id) {
-        String message = "Especialidad eliminada correctamente";
-        boolean response = true;
-        try {
-            iEspecialidadService.eliminarPorId(id);
-        } catch (Exception ex) {
-            message = "Error al eliminar la especialidad";
-            response = false;
-        }
-        return EspecialidadResponse.builder().mensaje(message).respuesta(response).build();
-    }
 }

@@ -78,7 +78,7 @@ function cboMedicos(idmedico) {
         success: function (resultado) {
             $.each(resultado, function (index, value) {
                 $("#cbomedico").append(
-                    <option value ="${value.idmedico}">${value.nommedico}</option>
+                    `<option value ="${value.idmedico}">${value.nommedico}</option>`
                 )
             });
             if (idmedico > 0) {
@@ -93,21 +93,3 @@ function resetForm() {
     $("#hIdEspecialidad").val("0");
     $("#cbomedico").empty();
 }
-/************METODO ELIMINAR***************/
-$(document).on("click", ".btn-eliminar", function () {
-    var id = $(this).data("eid");
-
-    if (confirm("¿Estás seguro de que quieres eliminar esta especialidad?")) {
-        $.ajax({
-            type: "DELETE",
-            url: "/especialidad/eliminar/" + id,
-            success: function (result) {
-                if (result.respuesta) {
-                    listEspecialidades();
-                }
-                alert(result.mensaje);
-            }
-        });
-    }
-    });
-
