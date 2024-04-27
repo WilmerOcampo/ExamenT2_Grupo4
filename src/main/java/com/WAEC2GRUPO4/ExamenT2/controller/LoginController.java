@@ -18,7 +18,7 @@ public class LoginController {
     private IUsuarioService iUsuarioService;
     @GetMapping("/login")
     public String login(){
-        return "backoffice/auth/frmlogin";
+        return "backoffice/auth/login";
     }
     @GetMapping("/login-success")
     public String loginSuccess(){
@@ -31,6 +31,6 @@ public class LoginController {
                 .getContext().getAuthentication().getPrincipal();
         UsuarioSecurity usuarioSecurity = (UsuarioSecurity) userDetails;
         session.setAttribute("nomusuario", usuarioSecurity.getNombre());
-        return "backoffice/auth/home";
+        return "backoffice/auth/inicio";
     }
 }

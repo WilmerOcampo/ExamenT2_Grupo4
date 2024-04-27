@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/seguridad")
 public class SeguridadController {
-
+    @GetMapping("/registro")
+    public String registrousuario(){
+        return "backoffice/seguridad/register";
+    }
 }
 

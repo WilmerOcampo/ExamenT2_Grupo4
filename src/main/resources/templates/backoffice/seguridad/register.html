@@ -39,35 +39,35 @@
                     <div class="text-center">[[${msg}]] -> <a th:href="@{/auth/login}">¡Iniciar sesión!</a></div>
                   </div>-->
 
-                    <form id="formRegister" class="mb-3" th:action="" th:object="" method="POST">
+                    <form id="formRegister" class="mb-3" method="POST">
                         <div class="mb-3">
                           <label for="nombre" class="form-label">Nombres</label>
-                          <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduzca sus nombres" th:field="" autofocus/>
-                          <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('nombre')}" th:errors=""></div>
+                          <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduzca sus nombres" autofocus/>
+                          <div class="invalid-feedback d-block"></div>
                         </div>
                         <div class="mb-3">
                           <label for="apellido" class="form-label">Apellidos</label>
-                          <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Introduzca sus apellidos" th:field="" autofocus/>
-                          <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('apellido')}" th:errors=""></div>
+                          <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Introduzca sus apellidos" autofocus/>
+                          <div class="invalid-feedback d-block" ></div>
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Introduzca su email" th:field="" autofocus/>
-                            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('email')}" th:errors=""></div>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Introduzca su email" autofocus/>
+                            <div class="invalid-feedback d-block" ></div>
                         </div>
                         <div class="mb-3">
                           <label for="usuario" class="form-label">Usuario</label>
-                          <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Introduzca su usuario" th:field="" autofocus/>
-                          <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('usuario')}" th:errors="*"></div>
+                          <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Introduzca su usuario" autofocus/>
+                          <div class="invalid-feedback d-block" ></div>
                         </div>
 
                       <div class="mb-3 form-password-toggle">
                         <label class="form-label" for="password">Password</label>
                         <div class="input-group input-group-merge">
-                          <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" th:field=""/>
+                          <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
                           <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                          <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('password')}" th:errors=""></div>
+                          <div class="invalid-feedback d-block"></div>
                         </div>
                       </div>
 
