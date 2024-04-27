@@ -89,7 +89,7 @@ function cboMedicos(idmedico) {
 }
 
 function resetForm() {
-    $("#titulo, #funcion").val("");
+    $("#titulo, #funcion", "#fechagraduacion").val("");
     $("#hIdEspecialidad").val("0");
     $("#cbomedico").empty();
 }
