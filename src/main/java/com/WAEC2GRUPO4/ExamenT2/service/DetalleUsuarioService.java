@@ -1,7 +1,41 @@
 package com.WAEC2GRUPO4.ExamenT2.service;
+import com.WAEC2GRUPO4.ExamenT2.model.bd.pk.Rol;
+import com.WAEC2GRUPO4.ExamenT2.model.bd.pk.Usuario;
+import com.WAEC2GRUPO4.ExamenT2.model.dto.security.UsuarioSecurity;
+import lombok.AllArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-public class DetalleUsuarioService {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
+@AllArgsConstructor
+@Service
+public class DetalleUsuarioService implements UserDetailsService {
+    private IUsuarioService iUsuarioService;
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
+    }
 
+    private UserDetails autenticacionUsuario(
+            Usuario usuario, List<GrantedAuthority> authorityList
+    ){
+        UsuarioSecurity usuarioSecurity = new UsuarioSecurity(
+                usuario.getNomusuario(),
+                usuario.getPassword(), usuario.getActivo(),
+                true, true,
+                true, authorityList
+        );
+        usuarioSecurity.setEmail(usuario.getEmail());
+        usuarioSecurity.setNombre(usuario.getNombres());
+        return usuarioSecurity;
+    }
 }
+
