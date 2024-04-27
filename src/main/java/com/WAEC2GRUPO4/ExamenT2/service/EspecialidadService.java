@@ -22,9 +22,4 @@ public class EspecialidadService implements  IEspecialidadService{
     public void save(Especialidad especialidad) {
         especialidadRepository.save(especialidad);
     }
-
-    @Override
-    public void eliminarPorId(Integer id) {
-        especialidadRepository.deleteById(id);
-    }
 }
