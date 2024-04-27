@@ -17,13 +17,13 @@
                     <form th:action="@{/seguridad/cambiar}" method="post">
                         <input type="hidden" id="nomusuario" name="nomusuario" th:value="${session.username}"/>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" placeholder="Ingrese su contraseña">
-                            <label>Contraseña</label>
+                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Ingrese su contraseña">
+                            <label>Nueva Contraseña</label>
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="password" name="password"
+                            <input type="password" class="form-control" id="passwor2" name="password2"
                                    placeholder="Ingrese su nueva contraseña">
-                            <label for="password">Nueva Contraseña</label>
+                            <label for="passwor2">Repita nueva contraseña</label>
                         </div>
                         <div class="text-center m-2">
                             <button type="submit" class="btn btn-primary">GUARDAR</button>
@@ -31,6 +31,9 @@
                     </form>
                     <div class="message alert alert-info text-center" th:if="${mensaje}">
                         Se cambio satisfactoriamente la contraseña!
+                    </div>
+                    <div class="message alert alert-danger text-center" th:if="${error}">
+                        Las contraseñas no coinciden
                     </div>
                 </div>
             </div>
