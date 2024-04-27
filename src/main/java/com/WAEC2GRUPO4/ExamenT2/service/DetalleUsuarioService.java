@@ -21,7 +21,16 @@ public class DetalleUsuarioService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        Usuario usuario = iUsuarioService.findUserByNomUsuario(username);
+        return autenticacionUsuario(usuario, obtenerListaRolesUsuario(usuario.getRoles()));
+    }
+
+    private List<GrantedAuthority> obtenerListaRolesUsuario(Set<Rol> listRoles){
+        List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
+        for (Rol rol :listRoles){
+            grantedAuthorityList.add(new SimpleGrantedAuthority(rol.getNomrol()));
+        }
+        return grantedAuthorityList;
     }
 
     private UserDetails autenticacionUsuario(
