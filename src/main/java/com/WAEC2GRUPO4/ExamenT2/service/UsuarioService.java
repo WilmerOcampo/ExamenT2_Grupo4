@@ -57,4 +57,11 @@ public class UsuarioService  implements IUsuarioService {
                 usuario.getNombres(), usuario.getApellidos(),
                 usuario.getActivo(), usuario.getIdusuario());
 }
+
+    @Override
+    public void cambiarContraseña(String nombreusuario, String password) {
+        Usuario usuario = findUserByNomUsuario(nombreusuario);
+        usuario.setPassword(bCryptPasswordEncoder.encode(password));
+        usuarioRepository.save(usuario);
+    }
 }
