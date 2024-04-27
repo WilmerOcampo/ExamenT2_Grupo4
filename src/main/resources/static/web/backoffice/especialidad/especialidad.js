@@ -64,6 +64,9 @@ function listEspecialidades() {
                             data-efgra="${value.fechagraduacion}"
                             data-emed="${value.medico.idmedico}">Actualizar
                             </button></td>
+                            <td><button type='button' class='btn btn-danger btn-eliminar'
+                            data-eid="${value.idespecialidad}">Eliminar
+                            </button></td>
                         </tr>`);
             });
         }
@@ -93,3 +96,20 @@ function resetForm() {
     $("#hIdEspecialidad").val("0");
     $("#cbomedico").empty();
 }
+
+$(document).on("click", ".btn-eliminar", function () {
+    var id = $(this).data("eid");
+
+    if (confirm("¿Estás seguro de que quieres eliminar esta especialidad?")) {
+        $.ajax({
+            type: "DELETE",
+            url: "/especialidad/eliminar/" + id,
+            success: function (result) {
+                if (result.respuesta) {
+                    listEspecialidades();
+                }
+                alert(result.mensaje);
+            }
+        });
+    }
+});

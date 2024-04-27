@@ -25,6 +25,7 @@
                 <th scope="col">Nombre Medico</th>
                 <th scope="col">Apellido Medico</th>
                 <th scope="col">Actualizar</th>
+                <th scope="col">Eliminar</th>
             </tr>
             </thead>
             <tbody>
@@ -42,6 +43,11 @@
                             th:data-efun="${especialidad.funcion}"
                             th:data-efgra="${especialidad.fechagraduacion}"
                             th:data-emed="${especialidad.medico.idmedico}">Actualizar
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger btn-eliminar"
+                            th:data-eid="${especialidad.idespecialidad}">Eliminar
                     </button>
                 </td>
             </tr>
