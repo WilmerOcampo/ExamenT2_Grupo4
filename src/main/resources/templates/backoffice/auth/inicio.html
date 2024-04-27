@@ -5,9 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-<h1 th:text="${session.username}"></h1>
-<form th:action="@{/logout}" method="post" class="d-flex" role="search">
-    <button class="btn btn-outline-success" type="submit">Logout</button>
-</form>
+<nav th:replace="~{layout::menu}"></nav>
 </body>
 </html>
